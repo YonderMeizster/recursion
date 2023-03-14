@@ -9,12 +9,13 @@ def _get_all_files(curr_dir, files):
                 files.append(i.name)
                 continue
             directories.append(i.name)
-    if len(directories) == 0:
-        return
 
     for dir in directories:
         chdir(curr_dir)
-        _get_all_files(path.abspath(dir), files)
+        founded_files = []
+        files += _get_all_files(path.abspath(dir), founded_files)
+
+    return files
 
 
 def get_all_files(dir):
